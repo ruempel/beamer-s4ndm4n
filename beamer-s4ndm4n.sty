@@ -1,0 +1,104 @@
+%#######################################%
+% s4ndm4n dark theme for LaTeX beamer   %
+% by Andreas Rümpel <ruempel@gmail.com> %
+%#######################################%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamer-s4ndm4n}[2017/12/09]
+\RequirePackage{fontspec} % font selection in XeLaTeX and LuaLaTeX
+\RequirePackage{textcomp} % prevent warnings on bullet symbol substitution
+\useinnertheme{circles} % circle item bullets and circle enumeration bullets
+
+%### colors
+\definecolor{accent}{HTML}{0288D1} %light blue: 0288D1, light green: 689F38
+
+% example box colors
+\setbeamercolor{boxtitlecolor}	{fg=white,bg=accent!55!black}
+\setbeamercolor{boxbodycolor}	{fg=black,bg=white}
+
+% title page colors
+\setbeamercolor{title}		{fg=white,		bg=}
+\setbeamercolor{author}		{fg=black!30,	bg=}
+\setbeamercolor{institute}	{fg=black!30,	bg=}
+\setbeamercolor{date}		{fg=black!30,	bg=}
+\setbeamercolor{subtitle}	{fg=accent!45,	bg=}
+
+% frame title, background and content colors
+\setbeamercolor{background canvas}	{			bg=black}
+\setbeamercolor{frametitle}			{fg=white,	bg=black!70}
+\setbeamercolor{framesubtitle}		{fg=accent!45} %bg does not work
+\setbeamercolor{block title}        {fg=white, bg=accent!55!black}
+\setbeamercolor{block body}         {fg=black, bg=white}
+\setbeamercolor{local structure}	{fg=accent!75!black} %bullets and so on
+\setbeamercolor{alerted text}		{fg=accent!55!black}
+
+% footline colors
+\setbeamercolor{foot40}{fg=black,bg=black!40}
+\setbeamercolor{foot65}{fg=white,bg=black!65}
+\setbeamercolor{foot75}{fg=white,bg=black!75}
+
+
+%### adjust templates and font sizes
+\setbeamertemplate{frametitle}[default][center] % centered frame titles
+\setbeamertemplate{sections/subsections in toc}[circle]
+
+\setbeamerfont{title}{size=\LARGE}
+\setbeamerfont{framesubtitle}{size=\large}
+\setbeamerfont{block title}{size=\normalsize}
+\setbeamerfont{itemize/enumerate body}{}
+\setbeamerfont{itemize/enumerate subbody}{size=\scriptsize}
+\setbeamerfont{itemize/enumerate subsubbody}{size=\scriptsize}
+
+
+%### center title of block, cf. beamerinnerthemedefault.sty
+\defbeamertemplate*{block begin}{centered}
+{
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=.75ex]{block title}
+    \usebeamerfont*{block title}\centering\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  \ifbeamercolorempty[bg]{block title}
+  {}
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+
+
+%### footline shape and structure
+\setbeamertemplate{footline}{
+\hbox{%
+  \begin{beamercolorbox}[wd=0.18\paperwidth,ht=2.25ex,dp=1ex,center]{foot40}%
+    \usebeamerfont{title in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.64\paperwidth,ht=2.25ex,dp=1ex,center]{foot65}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.12\paperwidth,ht=2.25ex,dp=1ex,center]{foot75}%
+    \usebeamerfont{date in head/foot}\insertshortdate
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.03\paperwidth,ht=2.25ex,dp=1ex,center]{foot65}%
+    \usebeamerfont{date in head/foot}\insertframenumber
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.03\paperwidth,ht=2.25ex,dp=1ex,center]{foot40}%
+    \usebeamerfont{date in head/foot}\inserttotalframenumber
+  \end{beamercolorbox}%
+}%
+\vskip0pt%
+}
+
+%### set background picture
+\setbeamertemplate{background canvas}{
+  \includegraphics[width=\paperwidth,height=\paperheight]{gfx/wood-background}
+}
+
+%### title page: skip headline and footline
+\renewcommand{\maketitle}{{
+\setbeamertemplate{headline}{} 
+\setbeamertemplate{footline}{}
+\begin{frame}
+  \titlepage
+\end{frame}
+}}
