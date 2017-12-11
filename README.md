@@ -7,6 +7,8 @@
 * Use `block` elements to structure your content within the frames.
 * There is an example slide deck `beamer-s4ndm4n-example.tex`. Get inspired by it.
 
+![Preview of example slide deck using beamer-s4ndm4n](beamer-s4ndm4n-example.png)
+
 ## Configuration
 * Change the *background picture* in the `sty` file.
 * There is an *accent color* defined, which controls all accent color shades. Change it in the `sty` file.
